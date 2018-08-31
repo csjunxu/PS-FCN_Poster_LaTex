@@ -105,21 +105,20 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \headerbox{\bf\color{blue} Problem Definition and Contribution}{name=contribution,column=0,row=0,span=2}{
     \textbf{\color{blue}Goal:} Estimating the latent clean image from the input real-world noisy image.
+    \vspace{-0em}
+    \textbf{\color{blue}Key Motivations and Contributions:}
+    \begin{itemize}
+        \item Realistic noise is signal dependent (much more complex than AWGN);
+        \item Reveal the channel-wise statistics and locally signal dependent property of the realistic noise;
+        \item Propose a trilateral weighted sparse coding (TWSC) scheme for real-world image denoising;
+        \item TWSC achieves much better performance than state-of-the-art denoising methods.
+    \end{itemize}
+      \vspace{-0.8em}
     \begin{center}
         \vspace{-0.8em}
         \centering\includegraphics[width=0.8\linewidth]{images/intro}
         \centering\includegraphics[width=0.8\linewidth]{images/intro}
     \end{center}
-
-    \vspace{-0.8em}
-    \textbf{\color{blue}Key Contributions:}
-    A flexible deep learning framework for photometric stereo that 
-    \begin{itemize}
-        \item does not depend on a pre-defined set of light directions during training and testing.
-        \item processes an arbitrary number of input images in an order-agnostic manner.
-        \item generalizes well on real data after training only on the synthetic data.
-        \item achieves state-of-the-art results in calibrated photoemtric stereo and promising results in uncalibrated scenario.
-    \end{itemize}  
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
