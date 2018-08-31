@@ -1,31 +1,36 @@
-\documentclass[landscape,a0paper,fontscale=0.292]{baposter}
-
+\documentclass[landscape,fontscale=0.292,archE]{baposter}
+% a0paper,
 \usepackage[vlined]{algorithm2e}
 \usepackage{times}
 \usepackage{calc}
 \usepackage{url}
 \usepackage{graphicx}
-\usepackage{amsmath}
-\usepackage{amssymb}
+\usepackage{amsmath,amsthm,amssymb}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
 \usepackage{relsize}
 \usepackage{multirow}
 \usepackage{booktabs}
+\usepackage{tabu}
+\usepackage{subcaption}
+\captionsetup{compatibility=false}
+\usepackage[font=small,labelfont=bf]{caption}
 
 \usepackage{graphicx}
 \usepackage{multicol}
 \usepackage[T1]{fontenc}
 \usepackage{ae}
 \usepackage{enumitem}
-
 \usepackage{colortbl}
 \usepackage{xcolor}
 \graphicspath{{images/}}
+\usepackage{color}
 
 \setlist[itemize]{leftmargin=*,nosep}
  \setlength{\columnsep}{0.7em}
  \setlength{\columnseprule}{0mm}
 
-
+\usepackage{subcaption}
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % Save space in lists. Use this after the opening of the list
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -103,52 +108,128 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\headerbox{\bf\color{blue} Problem Definition and Contribution}{name=contribution,column=0,row=0,span=2}{
+    \vspace{-2mm}
+\headerbox{\bf\color{blue} Problem, Motivation, and Contributions}{name=contribution,column=0,row=0,span=2}{
     \textbf{\color{blue}Goal:} Estimating the latent clean image from the input real-world noisy image.
-    \vspace{-0em}
     
-    \textbf{\color{blue}Key Motivations and Contributions:}
+    \textbf{\color{blue}Motivation:} Realistic noise show channel-wise and locally signal dependent property.
+    \begin{center}
+        \vspace{-2mm}
+        \centering\includegraphics[width=0.95\linewidth]{images/compare}
+        \centering\includegraphics[width=0.95\linewidth]{images/channelwise}
+    \end{center}
+    \vspace{-1mm}
+    
+    \textbf{\color{blue}Contributions:}
     \begin{itemize}
-        \item Realistic noise show the channel-wise statistics and locally signal dependent property;
         \item Propose a trilateral weighted sparse coding (TWSC) scheme for real-world denoising;
         \item TWSC achieves much better performance than state-of-the-art denoising methods.
-    \end{itemize}
-    \begin{center}
-        \vspace{-0.6em}
-        \centering\includegraphics[width=0.6\linewidth]{images/compare.png}
-        \centering\includegraphics[width=0.8\linewidth]{images/intro}
-    \end{center}
+    \end{itemize}    
+        \vspace{-3mm}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\headerbox{\bf\color{blue} Experiments \& Results}{name=results,column=2,row=0,span=3}{
-    \begin{minipage}[t]{0.5\textwidth}
-        \textbf{\color{blue}Synthetic Datasets for Training:} 
-        \vspace{-0.2em}
+\headerbox{\bf\color{blue} Theoretical Analysis}{name=analysis,column=2,row=0,span=3}{
+    \begin{minipage}[t]{0.4\textwidth}
+        \textbf{\color{blue}Convergence:} 
+        \vspace{-2mm}
         \begin{center}
-            \includegraphics[width=\textwidth]{images/datasets.pdf}
+            \includegraphics[width=0.8\textwidth]{images/Convergence.png}
         \end{center}
     \end{minipage}
-    \begin{minipage}[t]{0.5\textwidth}
-        \textbf{\color{blue}Quantitative Results on DiLiGenT Main Dataset:} 
-        \vspace{-0.2em}
+    \begin{minipage}[t]{0.6\textwidth}
+        \textbf{\color{blue}Existence of the \textcolor{red}{Solution} to ADMM (a):} 
+        \vspace{-4mm}
         \begin{center}
-            \includegraphics[width=0.98\textwidth]{images/res_quant_diligent_main}
+           \begin{theorem}
+\label{th1}
+Assume that $\mathbf{A}\in\mathbb{R}^{3p^2\times 3p^2}$, $\mathbf{B}\in\mathbb{R}^{M\times M}$ are both symmetric and positive semi-definite matrices.\ If at least one of $\mathbf{A}, \mathbf{B}$ is positive definite, the Sylvester equation $\mathbf{A}\mathbf{C}
++
+\mathbf{C}\mathbf{B}
+=
+\mathbf{E}$ has a unique solution for $\mathbf{C}\in \mathbb{R}^{3p^2\times M}$.
+\end{theorem}
+
+\begin{corollary}
+The  \textcolor{red}{Solution} to ADMM (a) exists and is unique.
+\end{corollary}
         \end{center}
     \end{minipage}
-
-    \vspace{0.5em}
-
+}    
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\headerbox{\bf\color{blue} Experimental Results}{name=results,column=2,below=analysis,span=3}{
     \begin{minipage}[t]{0.525\textwidth}
-        \textbf{\color{blue}Feature Visualization:}
-        \vspace{-0.5em}
-        \begin{center}
-            \includegraphics[width=\textwidth]{images/visualization}
-        \end{center}
-        \vspace{-0.9em}
-        \begin{itemize}
-            \item Different regions with similar normal directions are fired in different channels. Each channel can therefore be interpreted as the probability of the normal belonging to a certain direction.
-        \end{itemize}
+       \begin{table}[t!]
+\vspace{-4mm}
+\caption{Average results of PSNR(dB) and SSIM of different denoising algorithms on 20 grayscale images corrupted by AWGN noise.}
+\scriptsize
+\vspace{-3mm}
+\label{t1}
+\begin{center}
+\renewcommand\arraystretch{1.2}
+\begin{tabular*}{1\textwidth}{@{\extracolsep{\fill}}cccccccccc}
+\Xhline{1pt}
+$\sigma_{n}$
+&
+Metric
+&
+\textbf{BM3D-SAPCA}
+&
+\textbf{LSSC}
+&
+\textbf{NCSR}
+&
+\textbf{WNNM}
+&
+\textbf{TNRD}
+&
+\textbf{DnCNN}
+&
+\textbf{WSC}
+&
+\textbf{TWSC}
+\\
+\Xhline{1pt}
+\multirow{2}{*}{15}
+& PSNR & 32.42 & 32.27 & 32.19 & 32.43 & 32.27 & 32.59 & 32.06 & 32.34
+\\
+%\cline{2-10}
+& SSIM & 0.8860 & 0.8849 & 0.8814 & 0.8841 & 0.8815 & 0.8879 & 0.8673 & 0.8846
+\\
+\hline
+\multirow{2}{*}{25}
+& PSNR & 30.02 & 29.84 & 29.76 & 30.05 & 29.87 & 30.22 & 29.57 & 29.98
+\\
+%\cline{2-10}
+& SSIM & 0.8364 & 0.8329 & 0.8293 & 0.8365 & 0.8314 & 0.8415 & 0.8179 & 0.8372
+\\
+\hline   
+\multirow{2}{*}{35}
+& PSNR & 28.48 & 28.26 & 28.17 & 28.51 & 28.33 & 28.66 & 28.01 & 28.49 
+\\
+%\cline{2-10}
+& SSIM & 0.7969 & 0.7908 & 0.7855 & 0.7958 & 0.7907 & 0.8021 & 0.7765 & 0.7987
+\\
+\hline   
+\multirow{2}{*}{50}
+& PSNR & 26.85 & 26.64 & 26.55 & 26.92 & 26.75 & 27.08 & 26.35 & 26.93
+\\
+%\cline{2-10}
+& SSIM & 0.7481 & 0.7405 & 0.7391 & 0.7499 & 0.7415 & 0.7563 & 0.7258 & 0.7530 
+\\
+\hline   
+\multirow{2}{*}{75}
+& PSNR & 24.74 & 24.77 & 24.66 & 25.15 & 24.97 & 25.24 & 24.54 & 25.15
+\\
+%\cline{2-10}
+& SSIM & 0.6649 & 0.6746 & 0.6793 & 0.6903 & 0.6801 & 0.6931 & 0.6612 & 0.6949 
+\\
+\Xhline{1pt}
+\end{tabular*}
+\vspace{-8mm}
+\end{center}
+\end{table}
     \end{minipage}
     \hfill
     \begin{minipage}[t]{0.465\textwidth}
@@ -190,43 +271,89 @@
         \end{minipage}
         \begin{minipage}{0.24\linewidth}
             \begin{center}
-                \includegraphics[width=\linewidth]{images/PS-FCN_QRCode.png}
+                \includegraphics[width=\linewidth]{images/TWSC_QRCode.png}
             \end{center}
         \end{minipage}
         \end{center}
     \end{minipage}
 }
 
-\headerbox{\bf\color{blue} Formulation}{name=formulation,column=0,below=contribution,span=2}{
-    \textbf{\color{blue}Assumption:} Orthographic projection and directional lights.
-    
-    \textbf{\color{blue}Image Formation Equation:} Given $q$ color images of an object with $p$ pixels captured under different light directions, a normal matrix $\mathbf{N}_{3\times p}$, a light direction matrix $\mathbf{L}_{3\times q}$, and an observation matrix $\mathbf{I}_{3\times p\times q}$ can be constructed. Denoting the BRDFs for all observations as $\boldsymbol{\Theta}_{3\times p\times q}$, the image formation equation can be written as
-    \vspace{-0.5em}
-    \begin{equation}
-        \textbf{I} = \boldsymbol{\Theta} \circ \text{repmat}(\textbf{N}^\top \textbf{L}, 3),
-        \vspace{-0.5em}
-    \end{equation}
-    where $\circ$ represents element-wise multiplication, and $\text{repmat}(\mathbf{X},3)$ repeats the matrix $\mathbf{X}$ three times along the first dimension. 
-    
-    \textbf{\color{blue}Main Idea:} Our method directly learns the mapping from $(\textbf{I}, \textbf{L})$ to $\textbf{N}$ without explicitly modeling $\boldsymbol\Theta$.
+\headerbox{\bf\color{blue} The TWSC Scheme}{name=TWSC,column=0,below=contribution,span=2}{ 
+\textbf{\color{blue}TWSC:} Given a color image patch $\mathbf{Y}=\mathbf{X}+\mathbf{N}\in{3p^2\times N}$ and $\mathbf{Y}=\mathbf{D}\mathbf{S}\mathbf{V}^{\top}$ is the SVD of $\mathbf{Y}$. The TWSC model can be written as
+\vspace{-4mm}
+\begin{equation}
+\vspace{-4mm}
+\label{e4}
+\hat{\mathbf{C}}=\arg\min_{\mathbf{C}}\|\mathbf{W}_{1}(\mathbf{Y}-\mathbf{D}\mathbf{C})\mathbf{W}_{2}\|_{F}^{2}+\|\mathbf{W}_{3}^{-1}\mathbf{C}\|_{1}.
+\end{equation}
+The estimation of $\mathbf{X}$ can be $\hat{\mathbf{X}}=\mathbf{D}\hat{\mathbf{C}}$.
+
+\textbf{\color{blue}Formulation of weight matrices:}
+\vspace{-3mm}
+\begin{equation}
+\vspace{-3mm}
+\begin{split}
+\label{e9}
+\mathbf{W}_{1}
+&
+=
+\text{diag}(\sigma_{r}^{-1/2}\mathbf{I}_{p^2},\sigma_{g}^{-1/2}\mathbf{I}_{p^2},\sigma_{b}^{-1/2}\mathbf{I}_{p^2})
+,
+\\
+\mathbf{W}_{2}
+&
+=
+\text{diag}(\sigma_{1}^{-1/2},...,\sigma_{M}^{-1/2})
+,
+\mathbf{W}_{3} 
+= 
+\mathbf{S}
+,
+\end{split}
+\end{equation}
+
+\textbf{\color{blue}Visualization of weight matrices:}
+        \begin{center}
+        \vspace{-3mm}
+        \includegraphics[width=0.48\linewidth]{images/wsreal2}
+        \includegraphics[width=0.48\linewidth]{images/wsgaussian2}
+    \end{center}
+    \vspace{-4mm}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\headerbox{\bf\color{blue} Method}{name=abstract,column=0,below=formulation,span=2}{
-    \textbf{\color{blue}Network Architecture:} PS-FCN consists of three components, namely a shared-weight feature extractor, a fusion layer, and a normal regression network.
-    \vspace{-0.5em}
-    \begin{center}
-     \includegraphics[width=0.8\textwidth]{images/network_v2.pdf}
-    \end{center}
-    \vspace{-0.5em}
-    \textbf{\color{blue}Loss function:}
-    \vspace{-0.5em} 
-    \begin{equation}
-        L_{normal} = \frac{1}{hw} \sum_{i,j} (1 - \mathbf{N}_{ij} \cdot \tilde{\mathbf{N}}_{ij})
-        \vspace{-0.5em} 
-    \end{equation}
-    where $\mathbf{N}_{ij}$ and $\tilde{\mathbf{N}}_{ij}$ denote the predicted normal and the ground truth, respectively.
-}
+\headerbox{\bf\color{blue} Optimization}{name=optimization,column=0,below=TWSC,span=2}{
+\textbf{\color{blue}Variable Splitting:} $\min_{\mathbf{C},\mathbf{Z}}\|\mathbf{W}_{1}(\mathbf{Y}-\mathbf{D}\mathbf{W}_{3}\mathbf{C})\mathbf{W}_{2}\|_{F}^{2}
++
+\|\mathbf{Z}\|_{1}
+\ 
+\text{s.t.}
+\ 
+\mathbf{C}=\mathbf{Z}.
+$
+
+\textbf{\color{blue}ADMM:}
+ 
+\quad\quad(a) $\mathbf{C}_{k+1}=\arg\min_{\mathbf{C}}\|\mathbf{W}_{1}(\mathbf{Y}-\mathbf{D}\mathbf{W}_{3}\mathbf{C})\mathbf{W}_{2}\|_{F}^{2}
++\frac{\rho_{k}}{2}\|\mathbf{C} - \mathbf{Z}_{k} + \rho_{k}^{-1}\mathbf{\Delta}_{k}\|_{F}^{2}.$
+
+\quad\quad\quad\quad The solution $\mathbf{C}_{k+1}$ satisfies $\mathbf{A}\mathbf{C}_{k+1}+\mathbf{C}_{k+1}\mathbf{B}_{k}=\mathbf{E}_{k}$, where
+
+\quad\quad\quad\quad$\mathbf{A}=\mathbf{W}_{3}^{\top}\mathbf{D}^{\top}\mathbf{W}_{1}^{\top}\mathbf{W}_{1}\mathbf{D}\mathbf{W}_{3}, \mathbf{B}_{k}=\frac{\rho_{k}}{2}(\mathbf{W}_{2}\mathbf{W}_{2}^{\top})^{-1}$,
+
+\quad\quad\quad\quad$\mathbf{E}_{k}=\mathbf{W}_{3}^{\top}\mathbf{D}^{\top}\mathbf{W}_{1}^{\top}\mathbf{W}_{1}\mathbf{Y}+(\frac{\rho_{k}}{2}\mathbf{Z}_{k} -\frac{1}{2}\mathbf{\Delta}_{k})(\mathbf{W}_{2}\mathbf{W}_{2}^{\top})^{-1}$.
+
+\quad\quad\quad\quad (\textcolor{red}{Solution}) $\mathbf{C}_{k+1}=\text{vec}^{-1}((\mathbf{I}_{M}\otimes\mathbf{A}+\mathbf{B}_{k}^{\top}\otimes\mathbf{I}_{3p^2})^{-1}\text{vec}(\mathbf{E}_{k}))$.
+
+\quad\quad\quad\quad \textcolor{red}{BUT!} Is $(\mathbf{I}_{M}\otimes\mathbf{A}+\mathbf{B}_{k}^{\top}\otimes\mathbf{I}_{3p^2})^{-1}$ exist?
+
+\quad\quad(b) $\mathbf{Z}_{k+1}=\arg\min_{\mathbf{Z}}\frac{\rho_{k}}{2}\|\mathbf{Z} - (\mathbf{C}_{k+1}+\rho_{k}^{-1}\mathbf{\Delta}_{k})\|_{F}^{2}+\|\mathbf{Z}\|_{1}.$
+
+\quad\quad(c) $\mathbf{\Delta}_{k+1}=\mathbf{\Delta}_{k} + \rho_{k}(\mathbf{C}_{k+1}-\mathbf{Z}_{k+1}).$
+
+\quad\quad(d) $\rho_{k+1}= \mu\rho_{k}$, where $\mu\ge1$.
+
+ }
 
 \end{poster}
 \end{document}
