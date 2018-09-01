@@ -11,16 +11,13 @@
 \usepackage{relsize}
 \usepackage{multirow}
 \usepackage{booktabs}
-\usepackage{tabu}
-\usepackage{subcaption}
-\captionsetup{compatibility=false}
-\usepackage[font=small,labelfont=bf]{caption}
 
 \usepackage{graphicx}
 \usepackage{multicol}
 \usepackage[T1]{fontenc}
 \usepackage{ae}
 \usepackage{enumitem}
+
 \usepackage{colortbl}
 \usepackage{xcolor}
 \graphicspath{{images/}}
@@ -125,7 +122,7 @@
         \item Propose a trilateral weighted sparse coding (TWSC) scheme for real-world denoising;
         \item TWSC achieves much better performance than state-of-the-art denoising methods.
     \end{itemize}    
-        \vspace{-3mm}
+        \vspace{-1mm}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -159,121 +156,69 @@ The  \textcolor{red}{Solution} to ADMM (a) exists and is unique.
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \headerbox{\bf\color{blue} Experimental Results}{name=results,column=2,below=analysis,span=3}{
-    \begin{minipage}[t]{0.525\textwidth}
-       \begin{table}[t!]
-\vspace{-4mm}
-\caption{Average results of PSNR(dB) and SSIM of different denoising algorithms on 20 grayscale images corrupted by AWGN noise.}
-\scriptsize
-\vspace{-3mm}
-\label{t1}
-\begin{center}
-\renewcommand\arraystretch{1.2}
-\begin{tabular*}{1\textwidth}{@{\extracolsep{\fill}}cccccccccc}
-\Xhline{1pt}
-$\sigma_{n}$
-&
-Metric
-&
-\textbf{BM3D-SAPCA}
-&
-\textbf{LSSC}
-&
-\textbf{NCSR}
-&
-\textbf{WNNM}
-&
-\textbf{TNRD}
-&
-\textbf{DnCNN}
-&
-\textbf{WSC}
-&
-\textbf{TWSC}
-\\
-\Xhline{1pt}
-\multirow{2}{*}{15}
-& PSNR & 32.42 & 32.27 & 32.19 & 32.43 & 32.27 & 32.59 & 32.06 & 32.34
-\\
-%\cline{2-10}
-& SSIM & 0.8860 & 0.8849 & 0.8814 & 0.8841 & 0.8815 & 0.8879 & 0.8673 & 0.8846
-\\
-\hline
-\multirow{2}{*}{25}
-& PSNR & 30.02 & 29.84 & 29.76 & 30.05 & 29.87 & 30.22 & 29.57 & 29.98
-\\
-%\cline{2-10}
-& SSIM & 0.8364 & 0.8329 & 0.8293 & 0.8365 & 0.8314 & 0.8415 & 0.8179 & 0.8372
-\\
-\hline   
-\multirow{2}{*}{35}
-& PSNR & 28.48 & 28.26 & 28.17 & 28.51 & 28.33 & 28.66 & 28.01 & 28.49 
-\\
-%\cline{2-10}
-& SSIM & 0.7969 & 0.7908 & 0.7855 & 0.7958 & 0.7907 & 0.8021 & 0.7765 & 0.7987
-\\
-\hline   
-\multirow{2}{*}{50}
-& PSNR & 26.85 & 26.64 & 26.55 & 26.92 & 26.75 & 27.08 & 26.35 & 26.93
-\\
-%\cline{2-10}
-& SSIM & 0.7481 & 0.7405 & 0.7391 & 0.7499 & 0.7415 & 0.7563 & 0.7258 & 0.7530 
-\\
-\hline   
-\multirow{2}{*}{75}
-& PSNR & 24.74 & 24.77 & 24.66 & 25.15 & 24.97 & 25.24 & 24.54 & 25.15
-\\
-%\cline{2-10}
-& SSIM & 0.6649 & 0.6746 & 0.6793 & 0.6903 & 0.6801 & 0.6931 & 0.6612 & 0.6949 
-\\
-\Xhline{1pt}
-\end{tabular*}
-\vspace{-8mm}
-\end{center}
-\end{table}
+    \begin{minipage}[t]{0.5\textwidth}
+        \textbf{\color{blue}Quantitative Comparisons on AWGN Removal:}
+        \vspace{-2mm}
+        \begin{center}
+            \includegraphics[width=\textwidth]{images/t1}
+        \end{center}
     \end{minipage}
     \hfill
-    \begin{minipage}[t]{0.465\textwidth}
-    \textbf{\color{blue}Qualitative Results on DiLiGenT Main Dataset:} 
+    \begin{minipage}[t]{0.49\textwidth}
+    \textbf{\color{blue}Quantitative Comparisons on Realistic Noise Removal:}
         \begin{center}
-            \vspace{-0.5em}
-            \includegraphics[width=\textwidth]{images/res_qual_diligent_main}
+            \includegraphics[width=\textwidth]{images/t2}
+             \vspace{0mm}
+          
+            \includegraphics[width=\textwidth]{images/t3}
         \end{center}
     \end{minipage}
 
-    \vspace{0.8em}
-    \textbf{\color{blue}Qualitative Results on the Gourd\&Apple Dataset and Light Stage Data Gallery:}
-    \vspace{-0.8em}
-    \begin{center}
-        \includegraphics[width=1\textwidth]{images/gourd_stage}
-    \end{center}
-
-    \begin{minipage}[t]{0.6\textwidth}
-        \textbf{\color{blue}Quantitative Results on Spheres Rendered with 100 Different Materials:} 
-        \vspace{-0.5em}
+    \vspace{2mm}
+    \begin{minipage}[t]{0.45\textwidth}
+        \textbf{\color{blue}Comparisons on \textsl{Lena} (AWGN with $\sigma=75$):}
+     \vspace{-2mm}
         \begin{center}
-            \includegraphics[width=\textwidth]{images/100brdf.png}
+            \includegraphics[width=\textwidth]{images/awgn}
         \end{center}
     \end{minipage}
-    \begin{minipage}[t]{0.4\textwidth}
-        \textbf{\color{blue}Quantitative Results of Uncalibrated PS-FCN on DiLiGenT Main Dataset:} 
-        \vspace{-0.5em}
+    \hfill
+    \begin{minipage}[t]{0.54\textwidth}
+            \textbf{\color{blue}Comparisons on \textsl{Nikon D800 ISO 6400 1} in CC dataset [24]:}
+        \vspace{-2mm}
         \begin{center}
-            \includegraphics[width=\textwidth]{images/res_uncalibrated}
+            \includegraphics[width=\textwidth]{images/realcc}
         \end{center}
-        \vspace{-1.5em}
+    \end{minipage}
+
+\vspace{2mm}
+    \begin{minipage}[t]{0.44\textwidth}
+     \textbf{\color{blue}Quantitative Results on Speed:} 
+        \vspace{-1mm}
+        \begin{center}
+            \includegraphics[width=\textwidth]{images/t4}
+        \end{center}
 
         \begin{center}
-        \begin{minipage}{0.56\linewidth}
+        \begin{minipage}{0.55\linewidth}
             \begin{center}
-            \textbf{Project Webpage}: \\
-            \vspace{0.5em}\textbf{Code} \& \textbf{Dataset} \& \textbf{Model}
+            \textbf{Github Webpage}: \\
+            \vspace{2mm}\textbf{Code} \& \textbf{Dataset}
             \end{center}
         \end{minipage}
-        \begin{minipage}{0.24\linewidth}
+        \begin{minipage}{0.4\linewidth}
             \begin{center}
                 \includegraphics[width=\linewidth]{images/TWSC_QRCode.png}
             \end{center}
         \end{minipage}
+        \end{center}
+    \end{minipage}
+      \hfill
+    \begin{minipage}[t]{0.55\textwidth}
+            \textbf{\color{blue}Comparisons on \textsl{0001\_2} captured by Nexus 6P in DND dataset [29]:} 
+        \vspace{-1mm}
+        \begin{center}
+            \includegraphics[width=\textwidth]{images/realdnd}
         \end{center}
     \end{minipage}
 }
@@ -345,7 +290,7 @@ $
 
 \quad\quad\quad\quad (\textcolor{red}{Solution}) $\mathbf{C}_{k+1}=\text{vec}^{-1}((\mathbf{I}_{M}\otimes\mathbf{A}+\mathbf{B}_{k}^{\top}\otimes\mathbf{I}_{3p^2})^{-1}\text{vec}(\mathbf{E}_{k}))$.
 
-\quad\quad\quad\quad \textcolor{red}{BUT!} Is $(\mathbf{I}_{M}\otimes\mathbf{A}+\mathbf{B}_{k}^{\top}\otimes\mathbf{I}_{3p^2})^{-1}$ exist?
+\quad\quad\quad\quad \textcolor{red}{Challenge: Is $(\mathbf{I}_{M}\otimes\mathbf{A}+\mathbf{B}_{k}^{\top}\otimes\mathbf{I}_{3p^2})^{-1}$ exist?}
 
 \quad\quad(b) $\mathbf{Z}_{k+1}=\arg\min_{\mathbf{Z}}\frac{\rho_{k}}{2}\|\mathbf{Z} - (\mathbf{C}_{k+1}+\rho_{k}^{-1}\mathbf{\Delta}_{k})\|_{F}^{2}+\|\mathbf{Z}\|_{1}.$
 
