@@ -68,7 +68,7 @@
  headerheight=0.12\textheight}
  % Eye Catcher
  {
-      \includegraphics[width=0.08\linewidth]{PolyU_logo.png}
+      \includegraphics[width=0.09\linewidth]{PolyU_logo.png}
       \makebox[0.01\textwidth]{} 
       %\raisebox{0.08\height}{\includegraphics[width=0.10\linewidth]{CUHK_logo.jpg}}
       %\makebox[0.04\textwidth]{} 
@@ -80,7 +80,7 @@
  \vspace{0.1em} 
  \normalsize{Jun Xu$^1$, Lei Zhang$^1$, David Zhang$^{1,2}$ }
  \\[0.1em]
- {\small
+ {\normalsize
  $^1$ Department of Computing, Hong Kong Polytechnic University, Hong Kong SAR, China
  \\
  $^2$ School of Science and Engineering, The Chinese University of Hong Kong (Shenzhen), Shenzhen, China
@@ -90,7 +90,7 @@
  % University logo
  {
     \begin{tabular}{r}
-        \includegraphics[width=0.15\linewidth]{cropped-Logo_ECCV18_RGB_1200x280}
+        \includegraphics[width=0.2\linewidth]{cropped-Logo_ECCV18_RGB_1200x280}
     \end{tabular}
  }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -105,14 +105,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \vspace{-2mm}
 \headerbox{\bf\color{blue} Problem, Motivation, and Contributions}{name=contribution,column=0,row=0,span=2}{
     \textbf{\color{blue}Goal:} Estimating the latent clean image from the input real-world noisy image.
     
     \textbf{\color{blue}Motivation:} Realistic noise show channel-wise and locally signal dependent property.
     \begin{center}
-        \vspace{-2mm}
+        \vspace{-1mm}
         \centering\includegraphics[width=0.95\linewidth]{images/compare}
+        \vspace{1mm}
+        
         \centering\includegraphics[width=0.95\linewidth]{images/channelwise}
     \end{center}
     \vspace{-1mm}
@@ -158,7 +159,7 @@ The  \textcolor{red}{Solution} to ADMM (a) exists and is unique.
 \headerbox{\bf\color{blue} Experimental Results}{name=results,column=2,below=analysis,span=3}{
     \begin{minipage}[t]{0.5\textwidth}
         \textbf{\color{blue}Quantitative Comparisons on AWGN Removal:}
-        \vspace{-2mm}
+             \vspace{-0mm}
         \begin{center}
             \includegraphics[width=\textwidth]{images/t1}
         \end{center}
@@ -166,6 +167,7 @@ The  \textcolor{red}{Solution} to ADMM (a) exists and is unique.
     \hfill
     \begin{minipage}[t]{0.49\textwidth}
     \textbf{\color{blue}Quantitative Comparisons on Realistic Noise Removal:}
+         \vspace{-0mm}
         \begin{center}
             \includegraphics[width=\textwidth]{images/t2}
              \vspace{0mm}
@@ -174,10 +176,10 @@ The  \textcolor{red}{Solution} to ADMM (a) exists and is unique.
         \end{center}
     \end{minipage}
 
-    \vspace{2mm}
+    \vspace{3mm}
     \begin{minipage}[t]{0.45\textwidth}
         \textbf{\color{blue}Comparisons on \textsl{Lena} (AWGN with $\sigma=75$):}
-     \vspace{-2mm}
+     \vspace{-0mm}
         \begin{center}
             \includegraphics[width=\textwidth]{images/awgn}
         \end{center}
@@ -185,16 +187,16 @@ The  \textcolor{red}{Solution} to ADMM (a) exists and is unique.
     \hfill
     \begin{minipage}[t]{0.54\textwidth}
             \textbf{\color{blue}Comparisons on \textsl{Nikon D800 ISO 6400 1} in CC dataset [24]:}
-        \vspace{-2mm}
+        \vspace{-0mm}
         \begin{center}
             \includegraphics[width=\textwidth]{images/realcc}
         \end{center}
     \end{minipage}
 
-\vspace{2mm}
+\vspace{3mm}
     \begin{minipage}[t]{0.44\textwidth}
      \textbf{\color{blue}Quantitative Results on Speed:} 
-        \vspace{-1mm}
+        \vspace{-0mm}
         \begin{center}
             \includegraphics[width=\textwidth]{images/t4}
         \end{center}
