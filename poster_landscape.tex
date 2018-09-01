@@ -195,7 +195,7 @@ The  \textcolor{red}{Solution} to ADMM (a) exists and is unique.
 
 \vspace{3mm}
     \begin{minipage}[t]{0.44\textwidth}
-     \textbf{\color{blue}Quantitative Results on Speed:} 
+     \textbf{\color{blue}Comparisons on Speed:} 
         \vspace{-0mm}
         \begin{center}
             \includegraphics[width=\textwidth]{images/t4}
@@ -226,7 +226,7 @@ The  \textcolor{red}{Solution} to ADMM (a) exists and is unique.
 }
 
 \headerbox{\bf\color{blue} The TWSC Scheme}{name=TWSC,column=0,below=contribution,span=2}{ 
-\textbf{\color{blue}TWSC:} Given a color image patch $\mathbf{Y}=\mathbf{X}+\mathbf{N}\in{3p^2\times N}$ and $\mathbf{Y}=\mathbf{D}\mathbf{S}\mathbf{V}^{\top}$ is the SVD of $\mathbf{Y}$. The TWSC model can be written as
+\textbf{\color{blue}TWSC:} Given a color image patch $\mathbf{Y}=\mathbf{X}+\mathbf{N}\in{3p^2\times N}$ and $\mathbf{Y}=\mathbf{D}\mathbf{S}\mathbf{V}^{\top}$ is the SVD of $\mathbf{Y}$, where $\mathbf{S}$ is the singular value matrix of $\mathbf{Y}$. The TWSC model can be written as
 \vspace{-4mm}
 \begin{equation}
 \vspace{-4mm}
@@ -254,8 +254,7 @@ The estimation of $\mathbf{X}$ can be $\hat{\mathbf{X}}=\mathbf{D}\hat{\mathbf{C
 ,
 \mathbf{W}_{3} 
 = 
-\mathbf{S}
-,
+\mathbf{S}.
 \end{split}
 \end{equation}
 
